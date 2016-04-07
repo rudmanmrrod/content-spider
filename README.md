@@ -5,4 +5,5 @@ Araña basada en Scrapy para buscar contenido en distintas web's de medios digit
 # Requisitos
 
 Python 2.7
+
 Instalar scrapy: http://scrapy.org/
