@@ -1,4 +1,5 @@
 import feedparser
+import re
 from BeautifulSoup import BeautifulSoup
 from datetime import date
 
@@ -53,7 +54,8 @@ def limpiar_quintodia(var):
 			break
 	cont_str = ''
 	for i in range(0,number):
-		clean = BeautifulSoup(var[i]).text
+		txt = limpiar_links(var[i])
+		clean = BeautifulSoup(txt).text
 		if(clean!=''):
 			cont_str += clean
 			cont_str += '\n'
@@ -125,9 +127,17 @@ def limpiar_fecha_ub(var):
 	var = var[:inicio]
 	return var
 	
+	
 #Funcion para limpiar el campo autor
 def limpiar_autor_tc(var):
 	return var.replace('\r','').replace('\n','').replace('\t','').strip()
+	
+#Limpia algunas etiquetas html problematicas
+def limpiar_links(var):
+	part1 = re.sub(r'<a\b[^>]*>(.*?)</a>','',var)
+	part2 = re.sub(r'<iframe\b[^>]*>(.*?)</iframe>','',part1)
+	part3 = re.sub(r'(?<=\B)@[\w_]+','',part2)
+	return part3
 
 #Funciones para revisar rss
 def get_all_links(links):

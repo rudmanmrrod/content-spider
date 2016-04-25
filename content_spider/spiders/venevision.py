@@ -1,7 +1,7 @@
 import scrapy
 
-from utils import *
-from settings import settings
+from utils.utils import *
+from utils.settings import settings
 
 links_venevision = {"Nacionales":"http://feeds.feedburner.com/CanalNacionales","Politica":"http://feeds.feedburner.com/CanalPoltica",
 "Internacionales":"http://feeds.feedburner.com/CanalInternacionales","Economia":"http://feeds.feedburner.com/CanalEconomia"}

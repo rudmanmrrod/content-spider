@@ -1,7 +1,7 @@
 import scrapy
 
-from utils import *
-from settings import settings
+from utils.utils import *
+from utils.settings import settings
 
 class SiteSpySpider(scrapy.Spider):
 	
@@ -16,12 +16,12 @@ class SiteSpySpider(scrapy.Spider):
 	def parse_links(self, response):
 		fecha = response.css(settings[self.name]['fecha']).extract()[0]
 		current_date = obtener_fecha_tipo8(fecha)
-			if(current_date):
-				body = limpiar_notdigital(response.css(settings[self.name]['body']).extract())
-				yield {
-				'titulo': response.css(settings[self.name]['titulo']).extract()[0],
-				'autor': '',
-				'fecha': fecha,
-				'body': [body],
-				'link': response.url,
-				}
+		if(current_date):
+			body = limpiar_notdigital(response.css(settings[self.name]['body']).extract())
+			yield {
+			'titulo': response.css(settings[self.name]['titulo']).extract()[0],
+			'autor': '',
+			'fecha': fecha,
+			'body': [body],
+			'link': response.url,
+			}

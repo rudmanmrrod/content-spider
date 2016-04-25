@@ -1,8 +1,8 @@
 import scrapy
 from scrapy.http import HtmlResponse
 
-from utils import *
-from settings import settings
+from utils.utils import *
+from utils.settings import settings
 
 class SiteSpySpider(scrapy.Spider):
 	

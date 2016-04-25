@@ -1,7 +1,7 @@
 import scrapy
 
-from utils import *
-from settings import settings
+from utils.utils import *
+from utils.settings import settings
 import json
 
 class SiteSpySpider(scrapy.Spider):

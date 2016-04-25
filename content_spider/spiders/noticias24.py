@@ -1,7 +1,7 @@
 import scrapy
 
-from utils import *
-from settings import settings
+from utils.utils import *
+from utils.settings import settings
 
 class SiteSpySpider(scrapy.Spider):
 	
@@ -15,14 +15,14 @@ class SiteSpySpider(scrapy.Spider):
 						
 	def parse_links(self, response):
 		if(not('fotos/' in response.url)):
-		fecha = limpiar_fecha_n24([response.css(settings[self.name]['fecha'][0]).extract(),response.css(settings[self.name]['fecha'][1]).extract()])
-		current_date = obtener_fecha_tipo5(fecha)
-		if(current_date):
-			body = limpiar_not24(response.css(settings[self.name]['body']).extract())
-			yield {
-			'titulo': response.css(settings[self.name]['titulo']).extract()[0],
-			'autor': '',
-			'fecha': fecha,
-			'body': [body],
-			'link': response.url,
-			}
+			fecha = limpiar_fecha_n24([response.css(settings[self.name]['fecha'][0]).extract(),response.css(settings[self.name]['fecha'][1]).extract()])
+			current_date = obtener_fecha_tipo5(fecha)
+			if(current_date):
+				body = limpiar_not24(response.css(settings[self.name]['body']).extract())
+				yield {
+				'titulo': response.css(settings[self.name]['titulo']).extract()[0],
+				'autor': '',
+				'fecha': fecha,
+				'body': [body],
+				'link': response.url,
+				}
