@@ -29,7 +29,6 @@ class SiteSpySpider(scrapy.Spider):
 			yield scrapy.Request(full_url, callback=self.parse_links)
 				
 	def parse_links(self, response):
-		print "here"
 		fecha = response.css(settings["el_nacional"]['fecha']).extract()[0]
 		current_date = obtener_fecha_tipo1(fecha)
 		#if(current_date):
